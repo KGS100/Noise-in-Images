@@ -1,6 +1,6 @@
 clear all; close all;
 
-a=imread('image333.jpg');
+a=imread('image777.jpg');
 I=rgb2gray(a);
 figure; imshow(I)
 II=I;
