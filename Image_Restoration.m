@@ -95,7 +95,7 @@ subplot(2,3,3);imhist((ZZ1));title('Noise added Histogram','Fontsize', 25);ylim(
 subplot(2,3,6);imshow((ZZ1));title('Noise added Image','Fontsize', 25)
 subplot(2,3,2);imhist((Z1));ylim([0 10000]);title('Uniform Noise Histogram','Fontsize', 25)
 subplot(2,3,5);imshow((Z1));title('Uniform Noise','Fontsize', 25)
-h=suptitle('Uniform Distribution');
+h=subtitle('Uniform Distribution');
 set(h,'FontSize',30,'FontWeight','normal')
 
 
@@ -107,7 +107,7 @@ subplot(2,3,3);imhist(ZZ2);title('Noise added Histogram','Fontsize', 25);ylim([0
 subplot(2,3,6);imshow(ZZ2);title('Noise added Image','Fontsize', 25)
 subplot(2,3,2);imhist(Z2);title('Gaussian Noise Histogram','Fontsize', 25);%ylim([0 10000])
 subplot(2,3,5);imshow(Z2);title('Gaussian Noise','Fontsize', 25)
-h=suptitle('Gaussian Distribution');
+h=subtitle('Gaussian Distribution');
 set(h,'FontSize',30,'FontWeight','normal')
 
 
@@ -120,7 +120,7 @@ subplot(2,3,3);imhist(ZZ3);title('Noise added Histogram','Fontsize', 25);ylim([0
 subplot(2,3,6);imshow(ZZ3);title('Noise added Image','Fontsize', 25)
 subplot(2,3,2);imhist(Z3);title('Lognormal Noise Histogram','Fontsize', 25);%ylim([0 10000])
 subplot(2,3,5);imshow(Z3);title('Lognormal Noise','Fontsize', 25)
-h=suptitle('Lognormal Distribution');
+h=subtitle('Lognormal Distribution');
 set(h,'FontSize',30,'FontWeight','normal')
 
 
@@ -132,7 +132,7 @@ subplot(2,3,3);imhist(ZZ4);title('Noise added Histogram','Fontsize', 25);ylim([0
 subplot(2,3,6);imshow(ZZ4);title('Noise added Image','Fontsize', 25)
 subplot(2,3,2);imhist(Z4);title('Salt and Pepper Noise Histogram','Fontsize', 25);xlim([-0.1 1.1]);
 subplot(2,3,5);imshow(Z4);title('Salt and Pepper Noise','Fontsize', 25)
-h=suptitle('Salt and Pepper');
+h=subtitle('Salt and Pepper');
 set(h,'FontSize',30,'FontWeight','normal')
 
 
@@ -144,7 +144,7 @@ subplot(2,3,3);imhist(ZZ5);title('Noise added Histogram','Fontsize', 25);ylim([0
 subplot(2,3,6);imshow(ZZ5);title('Noise added Image','Fontsize', 25)
 subplot(2,3,2);imhist(Z5);title('Speckle Noise Histogram','Fontsize', 25);
 subplot(2,3,5);imshow(Z5);title('Speckle Noise','Fontsize', 25)
-h=suptitle('Rayleigh DIstribution');
+h=subtitle('Rayleigh DIstribution');
 set(h,'FontSize',30,'FontWeight','normal')
 
 %% Exponential (Shot Noise) Poisson Distribution
@@ -156,7 +156,7 @@ subplot(2,3,3);imhist(ZZ6);title('Noise added Histogram','Fontsize', 25);ylim([0
 subplot(2,3,6);imshow(ZZ6);title('Noise added Image','Fontsize', 25)
 subplot(2,3,2);imhist(Z6);title('Shot Noise Histogram','Fontsize', 25);
 subplot(2,3,5);imshow(Z6);title('Shot Noise','Fontsize', 25)
-h=suptitle('Poisson Distribution');
+h=subtitle('Poisson Distribution');
 set(h,'FontSize',30,'FontWeight','normal')
 
 %% Erlang Distribution
@@ -168,7 +168,7 @@ subplot(2,3,3);imhist(ZZ7);title('Noise added Histogram','Fontsize', 25);ylim([0
 subplot(2,3,6);imshow(ZZ7);title('Noise added Image','Fontsize', 25)
 subplot(2,3,2);imhist(Z7);title('Erlang Noise Histogram','Fontsize', 25);
 subplot(2,3,5);imshow(Z7);title('Erlang Noise','Fontsize', 25)
-h=suptitle('Erlang Distribution');
+h=subtitle('Erlang Distribution');
 set(h,'FontSize',30,'FontWeight','normal')
 
 
