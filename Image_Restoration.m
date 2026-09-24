@@ -8,58 +8,33 @@ I=im2double(I);
 R=size(a,1); C=size(a,2);
 z=zeros(R,C);
 
-
-% fr=zeros(1,256);
-% cf=zeros(1,256);
-% pbc=zeros(1,256);
-% q=zeros(1,256);
-% 
-% g1=imnoise(II,'gaussian');
-% figure;imshow(g1)
-% 
-% V=0.5*rand(size(I));
-% g2=imnoise(II,'localvar',V);
-% figure;imshow(g2)
-% 
-% g3=imnoise(II,'salt & pepper',0.08);
-% figure;imshow(g3)
-% 
-% g4=imnoise(II,'speckle',0.5);
-% figure;imshow(g4)
-% 
-% g5=imnoise(II,'poisson');
-% figure;imshow(g5)
-
 %% Random Number generation function
 
 %% Uniform Generator
-a1=0; b1=1;         % a,b are parameters
+a1=0; b1=1;         % a1,b1 are parameters
 
 w=rand(size(II));
 Z1=(a1+w*(b1-a1));
-% Z1=(a1+w./(b1-a1));
 
 ZZ1=(I+Z1);
-% ZZ1=I+(b1-a1)*rand(size(R*C))+a1;
-% ZZ1=I+rand(size(R*C))./(b1-a1)+a1;
 
 %% Gaussian Generator
-a2=0.5; b2=0.1;
+a2=0.5; b2=0.1;         % a2,b2 are parameters
 
 Z2= a2 + randn(size(II)).*b2;
 ZZ2=I + (a2 + randn(size(II)).*b2);
 
 %% Lognormal
 
-a3=0.5; b3=0.25;
+a3=0.5; b3=0.25;       % a3,b3 are parameters
 
 Z3=a3*exp(b3*randn(size(II)));
-% ZZ3=I+a3*exp(b3.*randn(R,C));
+
 ZZ3=I+Z3;
 
 %% Salt and Pepper
 
-a4=0.05; b4=0.05;
+a4=0.05; b4=0.05;         % a4,b4 are parameters
 X=rand(size(II));
 Z4=zeros(R,C)+0.5;
 if a4+b4 <=1
@@ -80,15 +55,12 @@ end
 end
 
 ZZ4=Z4+I;
-% figure 
-% imshow(Z4+I)
+
 
 %% Rayleigh 
 a5=0; b5=0.2;
 Z5=a5+(-b5*log(1-rand(R,C))).^0.5;
 ZZ5=I+Z5.*I;
-% figure; imshow(Z5.*I+I)
-% figure; imhist(Z5)
 
 %% Exponential  Poisson 
 a6=5; b6=0;
@@ -204,131 +176,131 @@ set(h,'FontSize',30,'FontWeight','normal')
 
 %% Average FIlter
 
-% r1=1/9.*[1 1 1;1 1 1;1 1 1];
-% l=zeros(R,C);
-% A1=convolution(r1,ZZ1,l,R,C);
-% A2=convolution(r1,ZZ2,l,R,C);
-% A3=convolution(r1,ZZ3,l,R,C);
-% A4=convolution(r1,ZZ4,l,R,C);
-% A5=convolution(r1,ZZ5,l,R,C);
-% A6=convolution(r1,ZZ6,l,R,C);
-% A7=convolution(r1,ZZ7,l,R,C);
-% 
-% figure;
-% subplot(1,2,1);imshow(ZZ1);title('Uniform Noise Image','Fontsize',25)
-% subplot(1,2,2);imshow(A1);title('Average Filtered Image (Uniform)','Fontsize',25)
-% 
-% figure;
-% subplot(3,2,1);imshow(ZZ2);title('Gaussian Noise Image','Fontsize',25)
-% subplot(3,2,2);imshow(A2);title('Average Filtered Image (Gaussian)','Fontsize',25)
-% subplot(3,2,3);imshow(ZZ3);title('Lognormal Noise Image','Fontsize',25)
-% subplot(3,2,4);imshow(A3);title('Average Filtered Image (Lognormal)','Fontsize',25)
-% subplot(3,2,5);imshow(ZZ4);title('Salt & Peppr Noise Image','Fontsize',25)
-% subplot(3,2,6);imshow(A4);title('Average Filtered Image (S & P)','Fontsize',25)
-% 
-% figure;
-% subplot(3,2,1);imshow(ZZ5);title('Speckle Noise Image','Fontsize',25)
-% subplot(3,2,2);imshow(A5);title('Average Filtered Image (Speckle)','Fontsize',25)
-% subplot(3,2,3);imshow(ZZ6);title('Shot Noise Image','Fontsize',25)
-% subplot(3,2,4);imshow(A6);title('Average Filtered Image (Shot)','Fontsize',25)
-% subplot(3,2,5);imshow(ZZ7);title('Erlang Noise Image','Fontsize',25)
-% subplot(3,2,6);imshow(A7);title('Average Filtered Image (Erlang)','Fontsize',25)
+r1=1/9.*[1 1 1;1 1 1;1 1 1];
+l=zeros(R,C);
+A1=convolution(r1,ZZ1,l,R,C);
+A2=convolution(r1,ZZ2,l,R,C);
+A3=convolution(r1,ZZ3,l,R,C);
+A4=convolution(r1,ZZ4,l,R,C);
+A5=convolution(r1,ZZ5,l,R,C);
+A6=convolution(r1,ZZ6,l,R,C);
+A7=convolution(r1,ZZ7,l,R,C);
+
+figure;
+subplot(1,2,1);imshow(ZZ1);title('Uniform Noise Image','Fontsize',25)
+subplot(1,2,2);imshow(A1);title('Average Filtered Image (Uniform)','Fontsize',25)
+
+figure;
+subplot(3,2,1);imshow(ZZ2);title('Gaussian Noise Image','Fontsize',25)
+subplot(3,2,2);imshow(A2);title('Average Filtered Image (Gaussian)','Fontsize',25)
+subplot(3,2,3);imshow(ZZ3);title('Lognormal Noise Image','Fontsize',25)
+subplot(3,2,4);imshow(A3);title('Average Filtered Image (Lognormal)','Fontsize',25)
+subplot(3,2,5);imshow(ZZ4);title('Salt & Peppr Noise Image','Fontsize',25)
+subplot(3,2,6);imshow(A4);title('Average Filtered Image (S & P)','Fontsize',25)
+
+figure;
+subplot(3,2,1);imshow(ZZ5);title('Speckle Noise Image','Fontsize',25)
+subplot(3,2,2);imshow(A5);title('Average Filtered Image (Speckle)','Fontsize',25)
+subplot(3,2,3);imshow(ZZ6);title('Shot Noise Image','Fontsize',25)
+subplot(3,2,4);imshow(A6);title('Average Filtered Image (Shot)','Fontsize',25)
+subplot(3,2,5);imshow(ZZ7);title('Erlang Noise Image','Fontsize',25)
+subplot(3,2,6);imshow(A7);title('Average Filtered Image (Erlang)','Fontsize',25)
 
 %% Weighted Average Filter
 
-% r2=1/16.*[1 2 1;2 4 2;1 2 1];
-% l2=zeros(R,C);
-% B1=convolution(r2,ZZ1,l2,R,C);
-% B2=convolution(r2,ZZ2,l2,R,C);
-% B3=convolution(r2,ZZ3,l2,R,C);
-% B4=convolution(r2,ZZ4,l2,R,C);
-% B5=convolution(r2,ZZ5,l2,R,C);
-% B6=convolution(r2,ZZ6,l2,R,C);
-% B7=convolution(r2,ZZ7,l2,R,C);
-% 
-% 
-% 
-% figure;
-% subplot(1,2,1);imshow(ZZ1);title('Uniform Noise Image','Fontsize',25)
-% subplot(1,2,2);imshow(B1);title('Weighted Average Filtered Image (Uniform)','Fontsize',25)
-% 
-% figure;
-% subplot(3,2,1);imshow(ZZ2);title('Gaussian Noise Image','Fontsize',25)
-% subplot(3,2,2);imshow(B2);title('Weighted Average Filtered Image (Gaussian)','Fontsize',25)
-% subplot(3,2,3);imshow(ZZ3);title('Lognormal Noise Image','Fontsize',25)
-% subplot(3,2,4);imshow(B3);title('Weighted Average Filtered Image (Lognormal)','Fontsize',25)
-% subplot(3,2,5);imshow(ZZ4);title('Salt & Peppr Noise Image','Fontsize',25)
-% subplot(3,2,6);imshow(B4);title('Weighted Average Filtered Image (S & P)','Fontsize',25)
-% 
-% figure;
-% subplot(3,2,1);imshow(ZZ5);title('Speckle Noise Image','Fontsize',25)
-% subplot(3,2,2);imshow(B5);title('Weighted Average Filtered Image (Speckle)','Fontsize',25)
-% subplot(3,2,3);imshow(ZZ6);title('Shot Noise Image','Fontsize',25)
-% subplot(3,2,4);imshow(B6);title('Weighted Average Filtered Image (Shot)','Fontsize',25)
-% subplot(3,2,5);imshow(ZZ7);title('Erlang Noise Image','Fontsize',25)
-% subplot(3,2,6);imshow(B7);title('Weighted Average Filtered Image (Erlang)','Fontsize',25)
+r2=1/16.*[1 2 1;2 4 2;1 2 1];
+l2=zeros(R,C);
+B1=convolution(r2,ZZ1,l2,R,C);
+B2=convolution(r2,ZZ2,l2,R,C);
+B3=convolution(r2,ZZ3,l2,R,C);
+B4=convolution(r2,ZZ4,l2,R,C);
+B5=convolution(r2,ZZ5,l2,R,C);
+B6=convolution(r2,ZZ6,l2,R,C);
+B7=convolution(r2,ZZ7,l2,R,C);
+
+
+
+figure;
+subplot(1,2,1);imshow(ZZ1);title('Uniform Noise Image','Fontsize',25)
+subplot(1,2,2);imshow(B1);title('Weighted Average Filtered Image (Uniform)','Fontsize',25)
+
+figure;
+subplot(3,2,1);imshow(ZZ2);title('Gaussian Noise Image','Fontsize',25)
+subplot(3,2,2);imshow(B2);title('Weighted Average Filtered Image (Gaussian)','Fontsize',25)
+subplot(3,2,3);imshow(ZZ3);title('Lognormal Noise Image','Fontsize',25)
+subplot(3,2,4);imshow(B3);title('Weighted Average Filtered Image (Lognormal)','Fontsize',25)
+subplot(3,2,5);imshow(ZZ4);title('Salt & Peppr Noise Image','Fontsize',25)
+subplot(3,2,6);imshow(B4);title('Weighted Average Filtered Image (S & P)','Fontsize',25)
+
+figure;
+subplot(3,2,1);imshow(ZZ5);title('Speckle Noise Image','Fontsize',25)
+subplot(3,2,2);imshow(B5);title('Weighted Average Filtered Image (Speckle)','Fontsize',25)
+subplot(3,2,3);imshow(ZZ6);title('Shot Noise Image','Fontsize',25)
+subplot(3,2,4);imshow(B6);title('Weighted Average Filtered Image (Shot)','Fontsize',25)
+subplot(3,2,5);imshow(ZZ7);title('Erlang Noise Image','Fontsize',25)
+subplot(3,2,6);imshow(B7);title('Weighted Average Filtered Image (Erlang)','Fontsize',25)
 
 %% Median Filter 
 
-% l3=zeros(R,C);
-% C1=Filter_median(ZZ1,l3,R,C);
-% C2=Filter_median(ZZ2,l3,R,C);
-% C3=Filter_median(ZZ3,l3,R,C);
-% C4=Filter_median(ZZ4,l3,R,C);
-% C5=Filter_median(ZZ5,l3,R,C);
-% C6=Filter_median(ZZ6,l3,R,C);
-% C7=Filter_median(ZZ7,l3,R,C);
-% 
-% figure;
-% subplot(1,2,1);imshow(ZZ1);title('Uniform Noise Image','Fontsize',25)
-% subplot(1,2,2);imshow(C1);title('Median Filtered Image (Uniform)','Fontsize',25)
-% 
-% figure;
-% subplot(3,2,1);imshow(ZZ2);title('Gaussian Noise Image','Fontsize',25)
-% subplot(3,2,2);imshow(C2);title('Median Filtered Image (Gaussian)','Fontsize',25)
-% subplot(3,2,3);imshow(ZZ3);title('Lognormal Noise Image','Fontsize',25)
-% subplot(3,2,4);imshow(C3);title('Median Filtered Image (Lognormal)','Fontsize',25)
-% subplot(3,2,5);imshow(ZZ4);title('Salt & Peppr Noise Image','Fontsize',25)
-% subplot(3,2,6);imshow(C4);title('Median Filtered Image (S & P)','Fontsize',25)
-% 
-% figure;
-% subplot(3,2,1);imshow(ZZ5);title('Speckle Noise Image','Fontsize',25)
-% subplot(3,2,2);imshow(C5);title('Median Filtered Image (Speckle)','Fontsize',25)
-% subplot(3,2,3);imshow(ZZ6);title('Shot Noise Image','Fontsize',25)
-% subplot(3,2,4);imshow(C6);title('Median Filtered Image (Shot)','Fontsize',25)
-% subplot(3,2,5);imshow(ZZ7);title('Erlang Noise Image','Fontsize',25)
-% subplot(3,2,6);imshow(C7);title('Median Filtered Image (Erlang)','Fontsize',25)
+l3=zeros(R,C);
+C1=Filter_median(ZZ1,l3,R,C);
+C2=Filter_median(ZZ2,l3,R,C);
+C3=Filter_median(ZZ3,l3,R,C);
+C4=Filter_median(ZZ4,l3,R,C);
+C5=Filter_median(ZZ5,l3,R,C);
+C6=Filter_median(ZZ6,l3,R,C);
+C7=Filter_median(ZZ7,l3,R,C);
+
+figure;
+subplot(1,2,1);imshow(ZZ1);title('Uniform Noise Image','Fontsize',25)
+subplot(1,2,2);imshow(C1);title('Median Filtered Image (Uniform)','Fontsize',25)
+
+figure;
+subplot(3,2,1);imshow(ZZ2);title('Gaussian Noise Image','Fontsize',25)
+subplot(3,2,2);imshow(C2);title('Median Filtered Image (Gaussian)','Fontsize',25)
+subplot(3,2,3);imshow(ZZ3);title('Lognormal Noise Image','Fontsize',25)
+subplot(3,2,4);imshow(C3);title('Median Filtered Image (Lognormal)','Fontsize',25)
+subplot(3,2,5);imshow(ZZ4);title('Salt & Peppr Noise Image','Fontsize',25)
+subplot(3,2,6);imshow(C4);title('Median Filtered Image (S & P)','Fontsize',25)
+
+figure;
+subplot(3,2,1);imshow(ZZ5);title('Speckle Noise Image','Fontsize',25)
+subplot(3,2,2);imshow(C5);title('Median Filtered Image (Speckle)','Fontsize',25)
+subplot(3,2,3);imshow(ZZ6);title('Shot Noise Image','Fontsize',25)
+subplot(3,2,4);imshow(C6);title('Median Filtered Image (Shot)','Fontsize',25)
+subplot(3,2,5);imshow(ZZ7);title('Erlang Noise Image','Fontsize',25)
+subplot(3,2,6);imshow(C7);title('Median Filtered Image (Erlang)','Fontsize',25)
 
 %% Minimum Filter
 
-% l4=zeros(R,C);
-% D1=Filter_minimum(ZZ1,l4,R,C);
-% D2=Filter_minimum(ZZ2,l4,R,C);
-% D3=Filter_minimum(ZZ3,l4,R,C);
-% D4=Filter_minimum(ZZ4,l4,R,C);
-% D5=Filter_minimum(ZZ5,l4,R,C);
-% D6=Filter_minimum(ZZ6,l4,R,C);
-% D7=Filter_minimum(ZZ7,l4,R,C);
-% 
-% figure;
-% subplot(1,2,1);imshow(ZZ1);title('Uniform Noise Image','Fontsize',25)
-% subplot(1,2,2);imshow(D1);title('Minimum Filtered Image (Uniform)','Fontsize',25)
-% 
-% figure;
-% subplot(3,2,1);imshow(ZZ2);title('Gaussian Noise Image','Fontsize',25)
-% subplot(3,2,2);imshow(D2);title('Minimum Filtered Image (Gaussian)','Fontsize',25)
-% subplot(3,2,3);imshow(ZZ3);title('Lognormal Noise Image','Fontsize',25)
-% subplot(3,2,4);imshow(D3);title('Minimum Filtered Image (Lognormal)','Fontsize',25)
-% subplot(3,2,5);imshow(ZZ4);title('Salt & Peppr Noise Image','Fontsize',25)
-% subplot(3,2,6);imshow(D4);title('Minimum Filtered Image (S & P)','Fontsize',25)
-% 
-% figure;
-% subplot(3,2,1);imshow(ZZ5);title('Speckle Noise Image','Fontsize',25)
-% subplot(3,2,2);imshow(D5);title('Minimum Filtered Image (Speckle)','Fontsize',25)
-% subplot(3,2,3);imshow(ZZ6);title('Shot Noise Image','Fontsize',25)
-% subplot(3,2,4);imshow(D6);title('Minimum Filtered Image (Shot)','Fontsize',25)
-% subplot(3,2,5);imshow(ZZ7);title('Erlang Noise Image','Fontsize',25)
-% subplot(3,2,6);imshow(D7);title('Minimum Filtered Image (Erlang)','Fontsize',25)
+l4=zeros(R,C);
+D1=Filter_minimum(ZZ1,l4,R,C);
+D2=Filter_minimum(ZZ2,l4,R,C);
+D3=Filter_minimum(ZZ3,l4,R,C);
+D4=Filter_minimum(ZZ4,l4,R,C);
+D5=Filter_minimum(ZZ5,l4,R,C);
+D6=Filter_minimum(ZZ6,l4,R,C);
+D7=Filter_minimum(ZZ7,l4,R,C);
+
+figure;
+subplot(1,2,1);imshow(ZZ1);title('Uniform Noise Image','Fontsize',25)
+subplot(1,2,2);imshow(D1);title('Minimum Filtered Image (Uniform)','Fontsize',25)
+
+figure;
+subplot(3,2,1);imshow(ZZ2);title('Gaussian Noise Image','Fontsize',25)
+subplot(3,2,2);imshow(D2);title('Minimum Filtered Image (Gaussian)','Fontsize',25)
+subplot(3,2,3);imshow(ZZ3);title('Lognormal Noise Image','Fontsize',25)
+subplot(3,2,4);imshow(D3);title('Minimum Filtered Image (Lognormal)','Fontsize',25)
+subplot(3,2,5);imshow(ZZ4);title('Salt & Peppr Noise Image','Fontsize',25)
+subplot(3,2,6);imshow(D4);title('Minimum Filtered Image (S & P)','Fontsize',25)
+
+figure;
+subplot(3,2,1);imshow(ZZ5);title('Speckle Noise Image','Fontsize',25)
+subplot(3,2,2);imshow(D5);title('Minimum Filtered Image (Speckle)','Fontsize',25)
+subplot(3,2,3);imshow(ZZ6);title('Shot Noise Image','Fontsize',25)
+subplot(3,2,4);imshow(D6);title('Minimum Filtered Image (Shot)','Fontsize',25)
+subplot(3,2,5);imshow(ZZ7);title('Erlang Noise Image','Fontsize',25)
+subplot(3,2,6);imshow(D7);title('Minimum Filtered Image (Erlang)','Fontsize',25)
 
 %% Maximum Filter
 
@@ -361,6 +333,7 @@ subplot(3,2,4);imshow(E6);title('Maximum Filtered Image (Shot)','Fontsize',25)
 subplot(3,2,5);imshow(ZZ7);title('Erlang Noise Image','Fontsize',25)
 subplot(3,2,6);imshow(E7);title('Maximum Filtered Image (Erlang)','Fontsize',25)
 
+%% Function Blocks
 
 %% Convolution Function 
 function l = convolution(c,e,l,R,C)
@@ -524,3 +497,4 @@ for i=1:R
 end
 
 end
+
